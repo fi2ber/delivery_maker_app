@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../blocs/sync/sync_bloc.dart';
-import '../theme/ios_theme.dart';
 import '../core/di/service_locator.dart';
+import '../core/theme/ios_theme.dart';
 import '../services/driver_api_service.dart';
 import '../services/auth_service.dart';
 import '../features/driver/bloc/driver_api_bloc.dart';
@@ -136,14 +136,14 @@ class _NavItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: isSelected ? IOSTheme.iosBlue.withOpacity(0.1) : Colors.transparent,
+              color: isSelected ? IOSTheme.systemBlue.withOpacity(0.1) : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Stack(
               children: [
                 Icon(
                   icon,
-                  color: isSelected ? IOSTheme.iosBlue : IOSTheme.labelSecondary,
+                  color: isSelected ? IOSTheme.systemBlue : IOSTheme.labelSecondary,
                   size: 24,
                 ),
                 if (badge != null)
@@ -153,7 +153,7 @@ class _NavItem extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: const BoxDecoration(
-                        color: IOSTheme.iosRed,
+                        color: IOSTheme.systemRed,
                         shape: BoxShape.circle,
                       ),
                       constraints: const BoxConstraints(
@@ -180,7 +180,7 @@ class _NavItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 11,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-              color: isSelected ? IOSTheme.iosBlue : IOSTheme.labelSecondary,
+              color: isSelected ? IOSTheme.systemBlue : IOSTheme.labelSecondary,
             ),
           ),
         ],
@@ -209,7 +209,7 @@ class _HomeView extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.fromLTRB(20, 60, 20, 24),
               decoration: const BoxDecoration(
-                color: IOSTheme.iosBlue,
+                color: IOSTheme.systemBlue,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(32),
                   bottomRight: Radius.circular(32),
@@ -269,7 +269,7 @@ class _HomeView extends StatelessWidget {
                             tooltip = state.isSyncing ? 'Синхронизация...' : 'Онлайн';
                           } else if (state is SyncOffline) {
                             icon = Icons.cloud_off;
-                            color = IOSTheme.iosOrange;
+                            color = IOSTheme.systemOrange;
                             tooltip = 'Офлайн';
                           } else {
                             icon = Icons.cloud;
@@ -311,7 +311,7 @@ class _HomeView extends StatelessWidget {
                           icon: Icons.local_shipping,
                           value: '${stats?.total ?? driverState.stops.length}',
                           label: 'Заказов',
-                          color: IOSTheme.iosBlue,
+                          color: IOSTheme.systemBlue,
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -320,7 +320,7 @@ class _HomeView extends StatelessWidget {
                           icon: Icons.check_circle,
                           value: '${stats?.delivered ?? 0}',
                           label: 'Выполнено',
-                          color: IOSTheme.iosGreen,
+                          color: IOSTheme.systemGreen,
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -329,7 +329,7 @@ class _HomeView extends StatelessWidget {
                           icon: Icons.percent,
                           value: '${stats?.completionRate ?? 0}%',
                           label: 'Процент',
-                          color: IOSTheme.iosPurple,
+                          color: IOSTheme.systemPurple,
                         ),
                       ),
                     ],
@@ -358,12 +358,12 @@ class _HomeView extends StatelessWidget {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [IOSTheme.iosBlue, IOSTheme.iosIndigo],
+                          colors: [IOSTheme.systemBlue, IOSTheme.systemIndigo],
                         ),
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: IOSTheme.iosBlue.withOpacity(0.3),
+                            color: IOSTheme.systemBlue.withOpacity(0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -434,7 +434,7 @@ class _HomeView extends StatelessWidget {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Icon(Icons.arrow_forward, color: IOSTheme.iosBlue),
+                                child: const Icon(Icons.arrow_forward, color: IOSTheme.systemBlue),
                               ),
                             ],
                           ),
@@ -470,7 +470,7 @@ class _HomeView extends StatelessWidget {
                   icon: Icons.shopping_cart,
                   title: 'Продажа',
                   subtitle: 'Создать заказ',
-                  color: IOSTheme.iosBlue,
+                  color: IOSTheme.systemBlue,
                   onTap: () {
                     final homeState = context.findAncestorStateOfType<_HomeScreenState>();
                     homeState?.setState(() => homeState._selectedIndex = 2);
@@ -480,7 +480,7 @@ class _HomeView extends StatelessWidget {
                   icon: Icons.inventory,
                   title: 'Склад',
                   subtitle: 'Проверить остатки',
-                  color: IOSTheme.iosGreen,
+                  color: IOSTheme.systemGreen,
                   onTap: () {
                     final homeState = context.findAncestorStateOfType<_HomeScreenState>();
                     homeState?.setState(() => homeState._selectedIndex = 3);
@@ -490,7 +490,7 @@ class _HomeView extends StatelessWidget {
                   icon: Icons.sync,
                   title: 'Синхронизация',
                   subtitle: 'Обновить данные',
-                  color: IOSTheme.iosPurple,
+                  color: IOSTheme.systemPurple,
                   onTap: () {
                     context.read<SyncBloc>().add(SyncRequested());
                   },
@@ -499,7 +499,7 @@ class _HomeView extends StatelessWidget {
                   icon: Icons.logout,
                   title: 'Выход',
                   subtitle: 'Завершить смену',
-                  color: IOSTheme.iosRed,
+                  color: IOSTheme.systemRed,
                   onTap: () {
                     context.read<AuthBloc>().add(AuthLogoutRequested());
                   },

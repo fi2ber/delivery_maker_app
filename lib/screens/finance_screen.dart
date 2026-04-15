@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/di/service_locator.dart';
 import '../main.dart';
 import '../services/finance_service.dart';
 

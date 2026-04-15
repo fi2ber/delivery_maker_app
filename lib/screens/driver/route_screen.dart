@@ -1,7 +1,7 @@
+import 'package:delivery_maker_app/core/theme/ios_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../theme/ios_theme.dart';
 import '../../core/di/service_locator.dart';
 import '../../services/driver_api_service.dart';
 import '../../services/auth_service.dart';
@@ -42,7 +42,7 @@ class _RouteScreenContent extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.error!),
-              backgroundColor: IOSTheme.iosRed,
+              backgroundColor: IOSTheme.systemRed,
               behavior: SnackBarBehavior.floating,
             ),
           );
@@ -54,7 +54,7 @@ class _RouteScreenContent extends StatelessWidget {
             backgroundColor: IOSTheme.bgSecondary,
             body: const Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(IOSTheme.iosBlue),
+                valueColor: AlwaysStoppedAnimation<Color>(IOSTheme.systemBlue),
               ),
             ),
           );
@@ -96,7 +96,7 @@ class _RouteScreenContent extends StatelessWidget {
                         Text(
                           'Маршрут',
                           style: IOSTheme.title2.copyWith(
-                            color: IOSTheme.label,
+                            color: IOSTheme.labelPrimary,
                           ),
                         ),
                         const Spacer(),
@@ -178,14 +178,14 @@ class _RouteScreenContent extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
       decoration: BoxDecoration(
-        color: IOSTheme.iosBlue,
+        color: IOSTheme.systemBlue,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(32),
           bottomRight: Radius.circular(32),
         ),
         boxShadow: [
           BoxShadow(
-            color: IOSTheme.iosBlue.withOpacity(0.3),
+            color: IOSTheme.systemBlue.withOpacity(0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -273,7 +273,7 @@ class _RouteScreenContent extends StatelessWidget {
               icon: Icons.schedule,
               value: '$pending',
               label: 'Осталось',
-              color: IOSTheme.iosOrange,
+              color: IOSTheme.systemOrange,
             ),
           ),
           const SizedBox(width: 12),
@@ -282,7 +282,7 @@ class _RouteScreenContent extends StatelessWidget {
               icon: Icons.check_circle,
               value: '$completed',
               label: 'Выполнено',
-              color: IOSTheme.iosGreen,
+              color: IOSTheme.systemGreen,
             ),
           ),
           const SizedBox(width: 12),
@@ -291,7 +291,7 @@ class _RouteScreenContent extends StatelessWidget {
               icon: Icons.percent,
               value: '${stats?.completionRate ?? 0}%',
               label: 'Процент',
-              color: IOSTheme.iosPurple,
+              color: IOSTheme.systemPurple,
             ),
           ),
         ],
@@ -364,10 +364,10 @@ class _OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: isCurrent ? IOSTheme.iosBlue.withOpacity(0.05) : Colors.white,
+        color: isCurrent ? IOSTheme.systemBlue.withOpacity(0.05) : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: isCurrent
-            ? Border.all(color: IOSTheme.iosBlue.withOpacity(0.3), width: 2)
+            ? Border.all(color: IOSTheme.systemBlue.withOpacity(0.3), width: 2)
             : null,
         boxShadow: IOSTheme.shadowSm,
       ),
@@ -381,14 +381,14 @@ class _OrderCard extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: isCurrent ? IOSTheme.iosBlue : IOSTheme.bgSecondary,
+                    color: isCurrent ? IOSTheme.systemBlue : IOSTheme.bgSecondary,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Center(
                     child: Text(
                       '${stop.sequence > 0 ? stop.sequence : ""}',
                       style: TextStyle(
-                        color: isCurrent ? Colors.white : IOSTheme.label,
+                        color: isCurrent ? Colors.white : IOSTheme.labelPrimary,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -418,10 +418,10 @@ class _OrderCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                StatusBadge(
-                  text: _getStatusText(stop.status),
-                  type: _getStatusType(stop.status),
-                ),
+                // StatusBadge(
+                //   text: _getStatusText(stop.status),
+                //   type: _getStatusType(stop.status),
+                // ),
               ],
             ),
           ),
@@ -431,12 +431,12 @@ class _OrderCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                const Icon(Icons.location_on_outlined, color: IOSTheme.iosBlue, size: 20),
+                const Icon(Icons.location_on_outlined, color: IOSTheme.systemBlue, size: 20),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     stop.address,
-                    style: const TextStyle(fontSize: 15, color: IOSTheme.label),
+                    style: const TextStyle(fontSize: 15, color: IOSTheme.labelPrimary),
                   ),
                 ),
               ],
@@ -450,17 +450,17 @@ class _OrderCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: IOSTheme.iosYellow.withOpacity(0.15),
+                  color: IOSTheme.systemYellow.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.comment, size: 14, color: IOSTheme.iosOrange),
+                    const Icon(Icons.comment, size: 14, color: IOSTheme.systemOrange),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
                         stop.comment!,
-                        style: const TextStyle(fontSize: 13, color: IOSTheme.iosOrange),
+                        style: const TextStyle(fontSize: 13, color: IOSTheme.systemOrange),
                       ),
                     ),
                   ],
@@ -474,9 +474,9 @@ class _OrderCard extends StatelessWidget {
             child: Row(
               children: [
                 const Spacer(),
-                _ActionButton(icon: Icons.navigation, color: IOSTheme.iosBlue, onTap: onNavigate),
+                _ActionButton(icon: Icons.navigation, color: IOSTheme.systemBlue, onTap: onNavigate),
                 const SizedBox(width: 8),
-                _ActionButton(icon: Icons.phone, color: IOSTheme.iosGreen, onTap: onCall),
+                _ActionButton(icon: Icons.phone, color: IOSTheme.systemGreen, onTap: onCall),
               ],
             ),
           ),
@@ -491,8 +491,8 @@ class _OrderCard extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: onStart,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isCurrent ? IOSTheme.iosBlue : IOSTheme.bgSecondary,
-                    foregroundColor: isCurrent ? Colors.white : IOSTheme.label,
+                    backgroundColor: isCurrent ? IOSTheme.systemBlue : IOSTheme.bgSecondary,
+                    foregroundColor: isCurrent ? Colors.white : IOSTheme.labelPrimary,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -523,18 +523,18 @@ class _OrderCard extends StatelessWidget {
     }
   }
 
-  StatusBadgeType _getStatusType(StopStatus status) {
-    switch (status) {
-      case StopStatus.pending:
-        return StatusBadgeType.pending;
-      case StopStatus.inProgress:
-        return StatusBadgeType.info;
-      case StopStatus.completed:
-        return StatusBadgeType.success;
-      case StopStatus.failed:
-        return StatusBadgeType.error;
-    }
-  }
+  //  _getStatusType(StopStatus status) {
+  //   switch (status) {
+  //     case StopStatus.pending:
+  //       return StatusBadge.pending;
+  //     case StopStatus.inProgress:
+  //       return StatusBadgeType.info;
+  //     case StopStatus.completed:
+  //       return StatusBadgeType.success;
+  //     case StopStatus.failed:
+  //       return StatusBadgeType.error;
+  //   }
+  // }
 }
 
 class _ActionButton extends StatelessWidget {
@@ -646,7 +646,7 @@ class _NavigationSheet extends StatelessWidget {
                 child: _NavigationOption(
                   icon: Icons.navigation,
                   label: 'Google Maps',
-                  color: IOSTheme.iosGreen,
+                  color: IOSTheme.systemGreen,
                   onTap: () => Navigator.pop(context),
                 ),
               ),
@@ -655,7 +655,7 @@ class _NavigationSheet extends StatelessWidget {
                 child: _NavigationOption(
                   icon: Icons.map,
                   label: 'Yandex Maps',
-                  color: IOSTheme.iosYellow,
+                  color: IOSTheme.systemYellow,
                   onTap: () => Navigator.pop(context),
                 ),
               ),
@@ -664,7 +664,7 @@ class _NavigationSheet extends StatelessWidget {
                 child: _NavigationOption(
                   icon: Icons.content_copy,
                   label: 'Копировать',
-                  color: IOSTheme.iosBlue,
+                  color: IOSTheme.systemBlue,
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: stop.address));
                     Navigator.pop(context);

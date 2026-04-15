@@ -83,12 +83,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
     try {
-      final user = await _authService.getCurrentUser();
+      final user =  _authService.userData;
       if (user != null) {
         emit(AuthAuthenticated(
-          userId: user.userId,
-          email: user.email,
-          role: user.role,
+          userId: user['userId'],
+          email: user['email'],
+          role: user['role'],
         ));
       } else {
         emit(AuthUnauthenticated());
@@ -102,21 +102,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLoginRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthLoading());
-    try {
-      final user = await _authService.login(
-        email: event.email,
-        password: event.password,
-        tenantId: event.tenantId,
-      );
-      emit(AuthAuthenticated(
-        userId: user.userId,
-        email: user.email,
-        role: user.role,
-      ));
-    } catch (e) {
-      emit(AuthFailure(e.toString()));
-    }
+    // emit(AuthLoading());
+    // try {
+    //   final user = await _authService.login(
+    //     email: event.email,
+    //     password: event.password,
+    //     tenantId: event.tenantId,
+    //   );
+    //   emit(AuthAuthenticated(
+    //     userId: user.userId,
+    //     email: user.email,
+    //     role: user.role,
+    //   ));
+    // } catch (e) {
+    //   emit(AuthFailure(e.toString()));
+    // }
   }
 
   Future<void> _onAuthLogoutRequested(

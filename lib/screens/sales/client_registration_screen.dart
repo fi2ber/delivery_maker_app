@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../theme/ios_theme.dart';
+import '../../core/theme/ios_theme.dart';
 import 'order_confirmation_screen.dart';
 
 /// Client Registration Screen with Phone Verification
@@ -245,9 +245,9 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
             child: Row(
               children: [
                 _buildStepIndicator(1, 'Данные', _currentStep >= 1),
-                Expanded(child: Container(height: 2, color: _currentStep >= 2 ? IOSTheme.iosBlue : IOSTheme.fill)),
+                Expanded(child: Container(height: 2, color: _currentStep >= 2 ? IOSTheme.systemBlue : IOSTheme.fill)),
                 _buildStepIndicator(2, 'Код', _currentStep >= 2),
-                Expanded(child: Container(height: 2, color: _currentStep >= 3 ? IOSTheme.iosBlue : IOSTheme.fill)),
+                Expanded(child: Container(height: 2, color: _currentStep >= 3 ? IOSTheme.systemBlue : IOSTheme.fill)),
                 _buildStepIndicator(3, 'Готово', _currentStep >= 3),
               ],
             ),
@@ -274,7 +274,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
           width: 36,
           height: 36,
           decoration: BoxDecoration(
-            color: isActive ? IOSTheme.iosBlue : IOSTheme.fill,
+            color: isActive ? IOSTheme.systemBlue : IOSTheme.fill,
             shape: BoxShape.circle,
           ),
           child: Center(
@@ -294,7 +294,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
           label,
           style: TextStyle(
             fontSize: 11,
-            color: isActive ? IOSTheme.iosBlue : IOSTheme.labelTertiary,
+            color: isActive ? IOSTheme.systemBlue : IOSTheme.labelTertiary,
             fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
           ),
         ),
@@ -333,14 +333,14 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
                           Icon(
                             Icons.business,
                             size: 18,
-                            color: _clientType == 'business' ? IOSTheme.iosBlue : IOSTheme.labelSecondary,
+                            color: _clientType == 'business' ? IOSTheme.systemBlue : IOSTheme.labelSecondary,
                           ),
                           const SizedBox(width: 8),
                           Text(
                             'Юр. лицо',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: _clientType == 'business' ? IOSTheme.iosBlue : IOSTheme.labelSecondary,
+                              color: _clientType == 'business' ? IOSTheme.systemBlue : IOSTheme.labelSecondary,
                             ),
                           ),
                         ],
@@ -364,14 +364,14 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
                           Icon(
                             Icons.person,
                             size: 18,
-                            color: _clientType == 'individual' ? IOSTheme.iosBlue : IOSTheme.labelSecondary,
+                            color: _clientType == 'individual' ? IOSTheme.systemBlue : IOSTheme.labelSecondary,
                           ),
                           const SizedBox(width: 8),
                           Text(
                             'Физ. лицо',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: _clientType == 'individual' ? IOSTheme.iosBlue : IOSTheme.labelSecondary,
+                              color: _clientType == 'individual' ? IOSTheme.systemBlue : IOSTheme.labelSecondary,
                             ),
                           ),
                         ],
@@ -550,7 +550,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
                 const SizedBox(width: 8),
                 GestureDetector(
                   onTap: _changePhone,
-                  child: const Icon(Icons.edit, color: IOSTheme.iosBlue, size: 20),
+                  child: const Icon(Icons.edit, color: IOSTheme.systemBlue, size: 20),
                 ),
               ],
             ),
@@ -626,7 +626,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
             child: ElevatedButton(
               onPressed: _codeController.text.length == 4 ? _verifyCode : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: IOSTheme.iosBlue,
+                backgroundColor: IOSTheme.systemBlue,
                 foregroundColor: Colors.white,
                 disabledBackgroundColor: IOSTheme.fill,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -648,10 +648,10 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-              color: IOSTheme.iosGreen.withOpacity(0.1),
+              color: IOSTheme.systemGreen.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.check_circle, color: IOSTheme.iosGreen, size: 64),
+            child: const Icon(Icons.check_circle, color: IOSTheme.systemGreen, size: 64),
           ),
           const SizedBox(height: 24),
           const Text(
@@ -709,12 +709,6 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
   }
 }
 
-// Data Classes
-class CartItem {
-  final Product product;
-  int quantity;
-  CartItem({required this.product, this.quantity = 1});
-}
 
 class Product {
   final String id;
@@ -728,20 +722,5 @@ class Product {
     required this.price,
     required this.imageUrl,
     required this.discount,
-  });
-}
-
-class Client {
-  final String id;
-  final String name;
-  final String phone;
-  final String address;
-  final bool isVerified;
-  Client({
-    required this.id,
-    required this.name,
-    required this.phone,
-    required this.address,
-    this.isVerified = false,
   });
 }

@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
     await _authService.setUserRole(UserRole.driver);
     if (mounted) {
       Navigator.of(context).pushReplacement(
-        const MaterialPageRoute(
+         MaterialPageRoute(
           builder: (_) => DeliveryApp(userRole: UserRole.driver),
         ),
       );
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
     await _authService.setUserRole(UserRole.sales);
     if (mounted) {
       Navigator.of(context).pushReplacement(
-        const MaterialPageRoute(
+         MaterialPageRoute(
           builder: (_) => DeliveryApp(userRole: UserRole.sales),
         ),
       );

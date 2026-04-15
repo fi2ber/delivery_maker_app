@@ -9,13 +9,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   // Initialize Firebase
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   
   // Setup dependency injection
   setupServiceLocator();
   
   // Initialize push notifications
-  await FirebasePushService().initialize();
+  // await FirebasePushService().initialize();
   
   // Get user role from auth service
   // Get user role from auth service

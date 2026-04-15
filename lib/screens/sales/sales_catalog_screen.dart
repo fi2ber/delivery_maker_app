@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/ios_theme.dart';
+import '../../core/theme/ios_theme.dart';
 import 'client_registration_screen.dart';
 import 'order_confirmation_screen.dart';
 
@@ -91,7 +91,7 @@ class _SalesCatalogScreenState extends State<SalesCatalogScreen> {
   Widget _buildHeader() {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 60, 20, 16),
-      decoration: const BoxDecoration(color: IOSTheme.iosBlue, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(32), bottomRight: Radius.circular(32))),
+      decoration: const BoxDecoration(color: IOSTheme.systemBlue, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(32), bottomRight: Radius.circular(32))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -125,8 +125,8 @@ class _SalesCatalogScreenState extends State<SalesCatalogScreen> {
               onTap: () { IOSTheme.lightImpact(); setState(() => _selectedCategory = category.id); },
               child: Container(
                 width: 80,
-                decoration: BoxDecoration(color: isSelected ? IOSTheme.iosBlue : Colors.white, borderRadius: BorderRadius.circular(16), boxShadow: IOSTheme.shadowSm),
-                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(category.icon, color: isSelected ? Colors.white : IOSTheme.iosBlue, size: 28), const SizedBox(height: 8), Text(category.name, style: TextStyle(color: isSelected ? Colors.white : IOSTheme.label, fontSize: 13, fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal))]),
+                decoration: BoxDecoration(color: isSelected ? IOSTheme.systemBlue : Colors.white, borderRadius: BorderRadius.circular(16), boxShadow: IOSTheme.shadowSm),
+                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(category.icon, color: isSelected ? Colors.white : IOSTheme.systemBlue, size: 28), const SizedBox(height: 8), Text(category.name, style: TextStyle(color: isSelected ? Colors.white : IOSTheme.labelPrimary, fontSize: 13, fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal))]),
               ),
             ),
           );
@@ -141,10 +141,10 @@ class _SalesCatalogScreenState extends State<SalesCatalogScreen> {
       decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 20, offset: const Offset(0, -5))]),
       child: SafeArea(
         child: Row(children: [
-          Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: IOSTheme.iosBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(16)), child: Row(children: [const Icon(Icons.shopping_cart, color: IOSTheme.iosBlue), const SizedBox(width: 8), Text('$_cartItemsCount', style: const TextStyle(color: IOSTheme.iosBlue, fontWeight: FontWeight.bold, fontSize: 16))])),
+          Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: IOSTheme.systemBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(16)), child: Row(children: [const Icon(Icons.shopping_cart, color: IOSTheme.systemBlue), const SizedBox(width: 8), Text('$_cartItemsCount', style: const TextStyle(color: IOSTheme.systemBlue, fontWeight: FontWeight.bold, fontSize: 16))])),
           const SizedBox(width: 16),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [const Text('Итого:', style: TextStyle(color: IOSTheme.labelSecondary, fontSize: 13)), Text('${_cartTotal.toStringAsFixed(0)} сум', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))])),
-          ElevatedButton(onPressed: _proceedToCheckout, style: ElevatedButton.styleFrom(backgroundColor: IOSTheme.iosBlue, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))), child: const Text('Оформить', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600))),
+          ElevatedButton(onPressed: _proceedToCheckout, style: ElevatedButton.styleFrom(backgroundColor: IOSTheme.systemBlue, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))), child: const Text('Оформить', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600))),
         ]),
       ),
     );
@@ -167,15 +167,15 @@ class _ProductCard extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(flex: 3, child: Stack(children: [
             ClipRRect(borderRadius: const BorderRadius.vertical(top: Radius.circular(20)), child: Container(color: IOSTheme.bgSecondary, child: Image.network(product.imageUrl, fit: BoxFit.cover, width: double.infinity))),
-            if (product.discount > 0) Positioned(top: 8, left: 8, child: Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: IOSTheme.iosRed, borderRadius: BorderRadius.circular(8)), child: Text('-${product.discount}%', style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)))),
-            if (cartQuantity > 0) Positioned(bottom: 8, right: 8, child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: IOSTheme.iosBlue, shape: BoxShape.circle, boxShadow: IOSTheme.shadowMd), child: Text('$cartQuantity', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)))),
+            if (product.discount > 0) Positioned(top: 8, left: 8, child: Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4), decoration: BoxDecoration(color: IOSTheme.systemRed, borderRadius: BorderRadius.circular(8)), child: Text('-${product.discount}%', style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)))),
+            if (cartQuantity > 0) Positioned(bottom: 8, right: 8, child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: IOSTheme.systemBlue, shape: BoxShape.circle, boxShadow: IOSTheme.shadowMd), child: Text('$cartQuantity', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)))),
           ])),
           Expanded(flex: 2, child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(product.name, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15), maxLines: 2, overflow: TextOverflow.ellipsis),
             const Spacer(),
             Row(children: [
-              Expanded(child: Text('${discountedPrice.toStringAsFixed(0)} сум', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: IOSTheme.iosGreen))),
-              Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: IOSTheme.iosBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(10)), child: const Icon(Icons.add, color: IOSTheme.iosBlue, size: 20)),
+              Expanded(child: Text('${discountedPrice.toStringAsFixed(0)} сум', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: IOSTheme.systemGreen))),
+              Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: IOSTheme.systemBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(10)), child: const Icon(Icons.add, color: IOSTheme.systemBlue, size: 20)),
             ]),
           ]))),
         ]),
@@ -202,11 +202,11 @@ class _ProductListItem extends StatelessWidget {
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(product.name, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
           const SizedBox(height: 4),
-          Text('${discountedPrice.toStringAsFixed(0)} сум', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: IOSTheme.iosGreen)),
+          Text('${discountedPrice.toStringAsFixed(0)} сум', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: IOSTheme.systemGreen)),
         ])),
         Column(children: [
-          if (cartQuantity > 0) Container(margin: const EdgeInsets.only(bottom: 8), padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), decoration: BoxDecoration(color: IOSTheme.iosBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(8)), child: Text('$cartQuantity', style: const TextStyle(color: IOSTheme.iosBlue, fontWeight: FontWeight.bold))),
-          GestureDetector(onTap: onAddToCart, child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: IOSTheme.iosBlue, borderRadius: BorderRadius.circular(12)), child: const Icon(Icons.add, color: Colors.white, size: 24))),
+          if (cartQuantity > 0) Container(margin: const EdgeInsets.only(bottom: 8), padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), decoration: BoxDecoration(color: IOSTheme.systemBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(8)), child: Text('$cartQuantity', style: const TextStyle(color: IOSTheme.systemBlue, fontWeight: FontWeight.bold))),
+          GestureDetector(onTap: onAddToCart, child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: IOSTheme.systemBlue, borderRadius: BorderRadius.circular(12)), child: const Icon(Icons.add, color: Colors.white, size: 24))),
         ]),
       ]),
     );
@@ -215,5 +215,4 @@ class _ProductListItem extends StatelessWidget {
 
 class Category { final String id; final String name; final IconData icon; Category({required this.id, required this.name, required this.icon}); }
 class Product { final String id; final String name; final double price; final String category; final String imageUrl; final int stock; final double discount; Product({required this.id, required this.name, required this.price, required this.category, required this.imageUrl, required this.stock, required this.discount}); }
-class CartItem { final Product product; int quantity; CartItem({required this.product, this.quantity = 1}); }
-class Client { final String id; final String name; final String phone; final String address; Client({required this.id, required this.name, required this.phone, required this.address}); }
+

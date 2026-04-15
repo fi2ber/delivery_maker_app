@@ -1,7 +1,7 @@
+import 'package:delivery_maker_app/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../core/theme/ios_theme.dart';
-import '../../../core/services/api_service.dart';
 
 /// OTP Verification screen for customer registration
 /// Used to verify phone number before creating customer

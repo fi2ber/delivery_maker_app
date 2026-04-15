@@ -28,7 +28,7 @@ class DeliveryApp extends StatefulWidget {
   const DeliveryApp({
     super.key,
     required this.userRole,
-    required this.isFirstRun,
+    this.isFirstRun=false,
   });
 
   @override

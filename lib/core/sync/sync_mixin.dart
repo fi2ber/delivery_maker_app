@@ -135,12 +135,12 @@ mixin SyncMixin<T extends StatefulWidget> on State<T> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (context) => const DraggableScrollableSheet(
+      builder: (context) =>  DraggableScrollableSheet(
         initialChildSize: 0.5,
         minChildSize: 0.3,
         maxChildSize: 0.8,
         expand: false,
-        child: SyncStatusBottomSheet(),
+        builder: (_,controller)=>SyncStatusBottomSheet(),
       ),
     );
   }

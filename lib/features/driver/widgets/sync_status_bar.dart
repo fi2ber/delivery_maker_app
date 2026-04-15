@@ -18,7 +18,7 @@ class SyncStatusBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (status == SyncStatus.synced && isOnline) {
+    if (status == SyncStatus.syncing && isOnline) {
       return const SizedBox.shrink(); // Hide when everything is good
     }
 
@@ -162,7 +162,7 @@ class SyncIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (status == SyncStatus.synced && isOnline) {
+    if (status == SyncStatus.syncing && isOnline) {
       return const SizedBox.shrink();
     }
 

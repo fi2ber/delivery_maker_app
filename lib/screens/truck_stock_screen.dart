@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import '../main.dart';
+import '../core/di/service_locator.dart';
 import '../db/schemas/stock.dart';
 import '../services/sync_service.dart';
 import '../services/database_service.dart';

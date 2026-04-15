@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/van_sale/van_sale_bloc.dart';
+import '../core/di/service_locator.dart';
 import '../main.dart';
 
 class VanSaleScreen extends StatelessWidget {

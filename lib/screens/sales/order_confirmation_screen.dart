@@ -1,5 +1,7 @@
+import 'package:delivery_maker_app/core/theme/ios_theme.dart';
 import 'package:flutter/material.dart';
-import '../../theme/ios_theme.dart';
+
+import 'sales_catalog_screen.dart';
 
 /// Order Confirmation Screen - Final step of order creation
 /// Client is already verified, just confirm order details
@@ -54,10 +56,10 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: IOSTheme.iosGreen.withOpacity(0.1),
+                color: IOSTheme.systemGreen.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.check_circle, color: IOSTheme.iosGreen, size: 48),
+              child: const Icon(Icons.check_circle, color: IOSTheme.systemGreen, size: 48),
             ),
             const SizedBox(height: 20),
             const Text('Заказ создан!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
@@ -81,7 +83,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: IOSTheme.iosBlue,
+                backgroundColor: IOSTheme.systemBlue,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -110,9 +112,9 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
           Row(
             children: [
               _buildStepIndicator(1, 'Каталог', true),
-              Expanded(child: Container(height: 2, color: IOSTheme.iosBlue)),
+              Expanded(child: Container(height: 2, color: IOSTheme.systemBlue)),
               _buildStepIndicator(2, 'Клиент', true),
-              Expanded(child: Container(height: 2, color: IOSTheme.iosBlue)),
+              Expanded(child: Container(height: 2, color: IOSTheme.systemBlue)),
               _buildStepIndicator(3, 'Готово', true),
             ],
           ),
@@ -135,13 +137,13 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: widget.client.isVerified 
-                            ? IOSTheme.iosGreen.withOpacity(0.1)
-                            : IOSTheme.iosBlue.withOpacity(0.1),
+                            ? IOSTheme.systemGreen.withOpacity(0.1)
+                            : IOSTheme.systemBlue.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
                         widget.client.isVerified ? Icons.verified_user : Icons.person,
-                        color: widget.client.isVerified ? IOSTheme.iosGreen : IOSTheme.iosBlue,
+                        color: widget.client.isVerified ? IOSTheme.systemGreen : IOSTheme.systemBlue,
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -159,7 +161,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                               Text(widget.client.phone, style: const TextStyle(color: IOSTheme.labelSecondary)),
                               if (widget.client.isVerified) ...[
                                 const SizedBox(width: 8),
-                                const Icon(Icons.check_circle, color: IOSTheme.iosGreen, size: 16),
+                                const Icon(Icons.check_circle, color: IOSTheme.systemGreen, size: 16),
                               ],
                             ],
                           ),
@@ -170,12 +172,12 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: IOSTheme.iosGreen.withOpacity(0.1),
+                          color: IOSTheme.systemGreen.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Text(
                           'Новый',
-                          style: TextStyle(color: IOSTheme.iosGreen, fontWeight: FontWeight.w600, fontSize: 12),
+                          style: TextStyle(color: IOSTheme.systemGreen, fontWeight: FontWeight.w600, fontSize: 12),
                         ),
                       ),
                   ],
@@ -185,17 +187,17 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
-                      color: IOSTheme.iosGreen.withOpacity(0.1),
+                      color: IOSTheme.systemGreen.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.verified, color: IOSTheme.iosGreen, size: 16),
+                        Icon(Icons.verified, color: IOSTheme.systemGreen, size: 16),
                         SizedBox(width: 8),
                         Text(
                           'Телефон подтверждён',
-                          style: TextStyle(color: IOSTheme.iosGreen, fontWeight: FontWeight.w600, fontSize: 13),
+                          style: TextStyle(color: IOSTheme.systemGreen, fontWeight: FontWeight.w600, fontSize: 13),
                         ),
                       ],
                     ),
@@ -254,7 +256,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('Итого:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                    Text('${_cartTotal.toStringAsFixed(0)} сум', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: IOSTheme.iosGreen)),
+                    Text('${_cartTotal.toStringAsFixed(0)} сум', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: IOSTheme.systemGreen)),
                   ],
                 ),
               ],
@@ -346,7 +348,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
             child: ElevatedButton(
               onPressed: _isProcessing ? null : _completeOrder,
               style: ElevatedButton.styleFrom(
-                backgroundColor: IOSTheme.iosGreen,
+                backgroundColor: IOSTheme.systemGreen,
                 foregroundColor: Colors.white,
                 disabledBackgroundColor: IOSTheme.fill,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -368,13 +370,13 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
         Container(
           width: 36,
           height: 36,
-          decoration: BoxDecoration(color: isActive ? IOSTheme.iosBlue : IOSTheme.fill, shape: BoxShape.circle),
+          decoration: BoxDecoration(color: isActive ? IOSTheme.systemBlue : IOSTheme.fill, shape: BoxShape.circle),
           child: Center(
             child: Text('$step', style: TextStyle(color: isActive ? Colors.white : IOSTheme.labelTertiary, fontWeight: FontWeight.bold)),
           ),
         ),
         const SizedBox(height: 4),
-        Text(label, style: TextStyle(fontSize: 11, color: isActive ? IOSTheme.iosBlue : IOSTheme.labelTertiary, fontWeight: isActive ? FontWeight.w600 : FontWeight.normal)),
+        Text(label, style: TextStyle(fontSize: 11, color: isActive ? IOSTheme.systemBlue : IOSTheme.labelTertiary, fontWeight: isActive ? FontWeight.w600 : FontWeight.normal)),
       ],
     );
   }
@@ -395,16 +397,16 @@ class _PaymentOption extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? IOSTheme.iosBlue.withOpacity(0.1) : IOSTheme.bgSecondary,
+          color: isSelected ? IOSTheme.systemBlue.withOpacity(0.1) : IOSTheme.bgSecondary,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? IOSTheme.iosBlue : Colors.transparent, width: 2),
+          border: Border.all(color: isSelected ? IOSTheme.systemBlue : Colors.transparent, width: 2),
         ),
         child: Row(
           children: [
-            Icon(icon, color: isSelected ? IOSTheme.iosBlue : IOSTheme.labelSecondary),
+            Icon(icon, color: isSelected ? IOSTheme.systemBlue : IOSTheme.labelSecondary),
             const SizedBox(width: 12),
-            Expanded(child: Text(title, style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal, color: isSelected ? IOSTheme.iosBlue : IOSTheme.label))),
-            if (isSelected) const Icon(Icons.check_circle, color: IOSTheme.iosBlue),
+            Expanded(child: Text(title, style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal, color: isSelected ? IOSTheme.systemBlue : IOSTheme.labelPrimary))),
+            if (isSelected) const Icon(Icons.check_circle, color: IOSTheme.systemBlue),
           ],
         ),
       ),
@@ -427,11 +429,11 @@ class CartItem {
   CartItem({required this.product, this.quantity = 1});
 }
 
-class Product {
-  final String id;
-  final String name;
-  final double price;
-  final String imageUrl;
-  final double discount;
-  Product({required this.id, required this.name, required this.price, required this.imageUrl, required this.discount});
-}
+// class Product {
+//   final String id;
+//   final String name;
+//   final double price;
+//   final String imageUrl;
+//   final double discount;
+//   Product({required this.id, required this.name, required this.price, required this.imageUrl, required this.discount});
+// }

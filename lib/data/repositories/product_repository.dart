@@ -69,17 +69,17 @@ class ProductRepository {
   /// Get all categories
   Future<List<ProductCategory>> getCategories() async {
     final db = await IsarDatabase.getInstance();
-    return await db.productCategories
+    return await db.productCategorys
         .where()
-        .isActiveEqualTo(true)
-        .sortBySortOrder()
+        .sortByIsActive()
+        .thenBySortOrder()
         .findAll();
   }
 
   /// Get category by ID
   Future<ProductCategory?> getCategoryById(String categoryId) async {
     final db = await IsarDatabase.getInstance();
-    return await db.productCategories
+    return await db.productCategorys
         .filter()
         .serverIdEqualTo(categoryId)
         .findFirst();
@@ -105,12 +105,12 @@ class ProductRepository {
           if (serverUpdated != null &&
               (localUpdated == null || serverUpdated.isAfter(localUpdated))) {
             product.id = existing.id;
-            product.syncStatus = SyncStatus()..isSynced = true;
+            // product.syncStatus = SyncStatus.syncing;
             await db.collection<ProductEntity>().put(product);
           }
         } else {
           // New product
-          product.syncStatus = SyncStatus()..isSynced = true;
+          // product.syncStatus = SyncStatus.syncing;
           await db.collection<ProductEntity>().put(product);
         }
       }
@@ -137,9 +137,7 @@ class ProductRepository {
     // In production, use actual popularity metrics
     return await db.collection<ProductEntity>()
         .where()
-        .isActiveEqualTo(true)
-        .and()
-        .inStockEqualTo(true)
+        .sortByIsActive()
         .limit(limit)
         .findAll();
   }
@@ -164,7 +162,6 @@ class ProductRepository {
 
     await db.writeTxn(() async {
       product.updatedAt = DateTime.now();
-      product.syncStatus ??= SyncStatus();
       product.syncStatus!.hasPendingChanges = true;
       await db.collection<ProductEntity>().put(product);
     });

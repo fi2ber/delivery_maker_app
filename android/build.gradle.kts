@@ -17,6 +17,14 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(":app")
+
+    plugins.withId("com.android.library") {
+        extensions.configure<com.android.build.gradle.LibraryExtension>("android") {
+            if (namespace == null) {
+                namespace = "com.example.${project.name.replace("-", "_")}"
+            }
+        }
+    }
 }
 
 tasks.register<Delete>("clean") {
