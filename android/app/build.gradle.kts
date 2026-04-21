@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.delivery_maker_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
